@@ -1,6 +1,23 @@
-{% extends "base.html" %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en" data-theme="hacktoberfest25">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dwar Architecture | dwar</title>
+  
+  
+    
+    
+  
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body class="min-h-screen bg-base-100 text-base-content">
+  <main class="min-h-screen w-full">
+    
   <div class="min-h-screen w-full bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.95),_transparent_35%),linear-gradient(180deg,#fdf8f3_0%,#eef3fb_100%)] text-slate-950">
     <div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-16 lg:px-8">
       <div class="grid items-center gap-10 lg:grid-cols-[1.2fr_0.9fr]">
@@ -18,8 +35,8 @@
           </div>
 
           <div class="grid gap-4 sm:grid-cols-2">
-            <a href="{{ site.base_url or '/' }}" id="returnEntrance" class="btn btn-primary btn-lg">Return to entrance</a>
-            <a href="{{ site.base_url }}blog/" class="btn btn-outline btn-lg">Browse ideas</a>
+            <a href="/" id="returnEntrance" class="btn btn-primary btn-lg">Return to entrance</a>
+            <a href="/blog/" class="btn btn-outline btn-lg">Browse ideas</a>
           </div>
 
           <div class="grid gap-4 sm:grid-cols-2">
@@ -68,7 +85,19 @@
       <div class="mt-14 rounded-[2rem] border border-slate-200 bg-white/90 p-10 shadow-[0_50px_100px_-80px_rgba(15,23,33,0.18)]">
         <div class="space-y-8">
           <div class="prose prose-slate max-w-none">
-            {{ content | safe }}
+            <p>Welcome to Dwar Architecture — a boutique design studio focused on creating refined, sustainable spaces that tell a story.</p>
+<h2 id="what-i-do">What I do<a class="headerlink" href="#what-i-do" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Architectural concept design for residential and commercial projects</li>
+<li>Interior planning that balances beauty with everyday function</li>
+<li>Material selection, detailing, and construction coordination</li>
+<li>Sustainable design strategies tuned to climate and context</li>
+</ul>
+<h2 id="design-philosophy">Design Philosophy<a class="headerlink" href="#design-philosophy" title="Permanent link">&para;</a></h2>
+<p>I create environments that feel both calm and compelling. Every project begins with listening carefully, developing a strong concept, and shaping spaces that make daily life more joyful.</p>
+<h2 id="work-with-me">Work with me<a class="headerlink" href="#work-with-me" title="Permanent link">&para;</a></h2>
+<p>Whether you are planning a house, a studio, or a curated workspace, I help bring your vision forward with clear design direction and thoughtful execution.</p>
+<p>Get in touch to start a conversation about your next project.</p>
           </div>
         </div>
       </div>
@@ -96,4 +125,8 @@
       transition: opacity 500ms ease-out;
     }
   </style>
-{% endblock %}
+
+  </main>
+</body>
+
+</html>
