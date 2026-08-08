@@ -11,6 +11,11 @@ import { processImages } from './src/image-preprocess.mjs';
 
 dotenv.config();
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'dwar';
+const base = process.env.GITHUB_ACTIONS === 'true' && repositoryName
+  ? `/${repositoryName}/`
+  : '/';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -164,6 +169,20 @@ if (!process.listenerCount('SIGINT')) {
   process.on('SIGINT', handleExit);
 }
 
+const copyStaticAssetsPlugin = () => ({
+  name: 'copy-static-assets',
+  closeBundle() {
+    const sourceDir = path.join(__dirname, 'assets');
+    const targetDir = path.join(__dirname, 'dist', 'assets');
+
+    if (fs.existsSync(sourceDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+      fs.cpSync(sourceDir, targetDir, { recursive: true });
+      console.log('Copied static assets to dist/assets');
+    }
+  },
+});
+
 const py_build_plugin = () => {
   let ready = false;
 
@@ -268,8 +287,10 @@ export default defineConfig(async ({ command }) => {
   const inputFiles = glob.sync(['**/*.html', '!dist/**', '!node_modules/**', '!**/.venv/**', '!templates/**']);
 
   return {
+    base,
     plugins: [
       py_build_plugin(),
+      copyStaticAssetsPlugin(),
       tailwindcss(),
     ],
     build: {

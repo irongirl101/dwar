@@ -3,7 +3,8 @@
   "version": "0.18.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "node scripts/deploy-gh-pages.mjs"
   },
   "keywords": [],
   "author": "Andey Hemanth",

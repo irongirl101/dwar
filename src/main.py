@@ -28,6 +28,36 @@ IMAGES_DIR = "assets/images"
 CONTENT_DIR = "content"
 POSTS_DIR = "content/posts"
 
+
+def resolve_site_base_url(site_config):
+    env_value = os.getenv("SITE_BASE_URL")
+    if env_value and str(env_value).strip():
+        value = str(env_value).strip()
+        if not value.startswith("/"):
+            value = "/" + value
+        if value != "/" and not value.endswith("/"):
+            value += "/"
+        return value
+
+    repo = os.getenv("GITHUB_REPOSITORY")
+    if os.getenv("GITHUB_ACTIONS") == "true" and repo:
+        repo_name = repo.split("/", 1)[1].strip() if "/" in repo else repo.strip()
+        if repo_name:
+            return f"/{repo_name}/"
+
+    base_url = site_config.get("base_url") if isinstance(site_config, dict) else None
+    if base_url is None:
+        return "/"
+
+    value = str(base_url).strip()
+    if not value:
+        return "/"
+    if not value.startswith("/"):
+        value = "/" + value
+    if value != "/" and not value.endswith("/"):
+        value += "/"
+    return value
+
 PAGE_SLUG_CACHE = ".cache/page-slugs.json"
 IMAGE_MANIFEST_PATH = ".cache/image-manifest.json"
 GENERATED_THEME_PATH = "assets/css/generated.daisyui.css"
@@ -1009,6 +1039,7 @@ def main():
         return
 
     site_config, pygments_theme = generate_styles()
+    site_config["base_url"] = resolve_site_base_url(site_config)
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     templates = load_templates(env)
     image_manifest = load_image_manifest()

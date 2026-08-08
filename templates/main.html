@@ -4,9 +4,9 @@
   <div class="transition-stage min-h-screen w-full bg-[#cecece] flex items-center justify-center relative overflow-hidden transition-colors duration-[3600ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
     <div class="zoom-overlay absolute inset-0 z-20 pointer-events-none opacity-0 transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
 
-    <img class="absolute top-8 left-8 w-28 h-auto z-10" src="/assets/door-animation/CIRCULAR_LOGO.png" alt="Logo" />
+    <img class="absolute top-8 left-8 w-28 h-auto z-10" src="{{ site.base_url }}assets/door-animation/CIRCULAR_LOGO.png" alt="Logo" />
 
-    <a class="door-link relative block w-[200px] h-[300px] rounded-[100px_100px_0_0] bg-[#0f0003] shadow-[0_10px_25px_rgba(0,0,0,0.3)] no-underline transition-transform duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]" href="/dwar/" aria-label="Open dwar">
+    <a class="door-link relative block w-[200px] h-[300px] rounded-[100px_100px_0_0] bg-[#0f0003] shadow-[0_10px_25px_rgba(0,0,0,0.3)] no-underline transition-transform duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]" href="{{ site.base_url }}dwar/" aria-label="Open dwar">
       <div class="door absolute inset-0 rounded-[100px_100px_0_0] bg-[#a91a2c] shadow-[inset_-20px_7px_#701723] box-border origin-left transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer"></div>
     </a>
   </div>
@@ -46,7 +46,7 @@
         }, 2800);
 
         setTimeout(() => {
-          window.location.href = '/dwar/';
+          window.location.href = '{{ site.base_url }}dwar/';
         }, 3600);
       });
     });
