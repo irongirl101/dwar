@@ -185,33 +185,6 @@ const copyStaticAssetsPlugin = () => ({
   },
 });
 
-const preserveStaticCssPlugin = () => ({
-  name: 'preserve-static-css-links',
-  transformIndexHtml: {
-    order: 'post',
-    handler(html, ctx) {
-      const relPath = path.relative(__dirname, ctx.filename || '');
-      const depth = relPath && relPath !== 'index.html'
-        ? path.dirname(relPath).split(path.sep).filter(Boolean).length
-        : 0;
-      const assetPrefix = base && base !== '/' ? '' : '../'.repeat(depth);
-
-      const cleaned = html.replace(
-        /\s*<link rel="stylesheet" crossorigin href="[^"]*syntax-[^"]+\.css">\s*/g,
-        ''
-      );
-
-      const cssLinks = `  <link rel="stylesheet" href="${assetPrefix}assets/css/main.css">\n  <link rel="stylesheet" href="${assetPrefix}assets/css/syntax.css">\n`;
-
-      if (!cleaned.includes(`href="${assetPrefix}assets/css/main.css"`)) {
-        return cleaned.replace('</head>', `${cssLinks}</head>`);
-      }
-
-      return cleaned;
-    },
-  },
-});
-
 const py_build_plugin = () => {
   let ready = false;
 
@@ -320,7 +293,6 @@ export default defineConfig(async ({ command }) => {
     plugins: [
       py_build_plugin(),
       copyStaticAssetsPlugin(),
-      preserveStaticCssPlugin(),
       tailwindcss(),
     ],
     build: {
