@@ -188,8 +188,8 @@ const copyStaticAssetsPlugin = () => ({
 const preserveStaticCssPlugin = () => ({
   name: 'preserve-static-css-links',
   transformIndexHtml: {
-    enforce: 'post',
-    transform(html, ctx) {
+    order: 'post',
+    handler(html, ctx) {
       const relPath = path.relative(__dirname, ctx.filename || '');
       const depth = relPath && relPath !== 'index.html'
         ? path.dirname(relPath).split(path.sep).filter(Boolean).length
