@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="hacktoberfest25">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | dwar</title>
+  <link rel="stylesheet" href="/dwar/assets/css/main.css">
+  <link rel="stylesheet" href="/dwar/assets/css/syntax.css">
+</head>
+
+<body class="min-h-screen bg-base-100 text-base-content">
+  <main class="min-h-screen w-full">
+    
+  <div class="transition-stage min-h-screen w-full bg-[#cecece] flex items-center justify-center relative overflow-hidden transition-colors duration-[3600ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <div class="zoom-overlay absolute inset-0 z-20 pointer-events-none opacity-0 transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+
+    <img class="absolute top-8 left-8 w-28 h-auto z-10" src="/dwar/assets/door-animation/CIRCULAR_LOGO.png" alt="Logo" />
+
+    <a class="door-link relative block w-[200px] h-[300px] rounded-[100px_100px_0_0] bg-[#0f0003] shadow-[0_10px_25px_rgba(0,0,0,0.3)] no-underline transition-transform duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]" href="/dwar/dwar/" aria-label="Open dwar">
+      <div class="door absolute inset-0 rounded-[100px_100px_0_0] bg-[#a91a2c] shadow-[inset_-20px_7px_#701723] box-border origin-left transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer"></div>
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const element = document.querySelector('.door');
+      const link = document.querySelector('.door-link');
+
+      if (!element || !link) return;
+
+      element.addEventListener('click', () => {
+        element.classList.add('doorOpen');
+      });
+
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const overlay = document.querySelector('.zoom-overlay');
+        const stage = document.querySelector('.transition-stage');
+        const rect = link.getBoundingClientRect();
+
+        element.classList.add('doorOpen');
+        link.classList.add('doorExpand');
+        element.classList.add('doorPanelExpand');
+        stage.classList.add('is-revealing');
+
+        if (overlay && stage) {
+          overlay.classList.add('is-revealing');
+          const stageRect = stage.getBoundingClientRect();
+          overlay.style.transform = `translate(${rect.left - stageRect.left}px, ${rect.top - stageRect.top}px) scale(24)`;
+          overlay.classList.remove('opacity-0');
+          overlay.classList.add('opacity-100');
+        }
+
+        setTimeout(() => {
+          document.body.classList.add('is-fading-out');
+        }, 2800);
+
+        setTimeout(() => {
+          window.location.href = '/dwar/dwar/';
+        }, 3600);
+      });
+    });
+  </script>
+
+  <style>
+    body.is-fading-out {
+      opacity: 0;
+      transition: opacity 500ms ease-out;
+    }
+
+    .doorOpen {
+      transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-112deg) scale(1.02);
+    }
+
+    .doorExpand {
+      transform: scale(3.35) translateY(-34px);
+      box-shadow: 0 0 0 9999px #0f0003;
+    }
+
+    .doorPanelExpand {
+      transform: rotateY(-112deg) scale(3.35) translateY(-34px);
+    }
+
+    .transition-stage.is-revealing {
+      background-color: #0f0003;
+      transition: background-color 3600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .transition-stage {
+      background-color: #cecece;
+    }
+
+    .zoom-overlay {
+      transform-origin: top left;
+      border-radius: 9999px;
+      clip-path: circle(0% at center);
+      opacity: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(244,240,235,0.78) 45%, rgba(232,226,218,0.7) 100%);
+      transition: transform 3600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 3600ms ease-out;
+    }
+
+    .zoom-overlay.is-revealing {
+      opacity: 0.96;
+      clip-path: circle(180% at center);
+      background: radial-gradient(circle at center, rgba(21, 1, 4, 0.94) 0%, rgba(21, 1, 4, 0.84) 45%, rgba(21, 1, 4, 0.72) 100%);
+    }
+  </style>
+
+  </main>
+</body>
+
+</html>
