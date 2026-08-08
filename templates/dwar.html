@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="min-h-screen w-full bg-[#f7f7f7] flex items-center justify-center px-6">
+    <div class="max-w-xl w-full rounded-[2rem] bg-white p-10 text-center shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+      <p class="mb-3 text-sm uppercase tracking-[0.3em] text-[#701723]">New destination</p>
+      <h1 class="text-4xl font-bold text-[#111]">{{ page.title }}</h1>
+      <p class="mt-4 text-lg text-gray-700">
+        This is a distinct page for the door transition, separate from the landing experience.
+      </p>
+      <a href="/" class="btn btn-outline mt-8">Back to landing</a>
+    </div>
+  </div>
+{% endblock %}
