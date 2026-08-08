@@ -7,11 +7,16 @@ site.theme.default is defined else (site.theme if site.theme is defined else "dr
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.site_name }}</title>
+  {% set asset_prefix = site.base_url if site.base_url and site.base_url != '/' else '' %}
+  {% if page.url is defined and asset_prefix == '' %}
+    {% set segments = page.url.lstrip('/').split('/') if page.url != '/' else [] %}
+    {% set asset_prefix = '../' * segments|length %}
+  {% endif %}
   {% if site.base_url and site.base_url != '/' %}
   <base href="{{ site.base_url }}">
   {% endif %}
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/syntax.css">
+  <link rel="stylesheet" href="{{ asset_prefix }}assets/css/main.css">
+  <link rel="stylesheet" href="{{ asset_prefix }}assets/css/syntax.css">
 </head>
 
 <body class="min-h-screen bg-base-100 text-base-content">

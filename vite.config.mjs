@@ -12,9 +12,11 @@ import { processImages } from './src/image-preprocess.mjs';
 dotenv.config();
 
 const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'dwar';
-const base = process.env.GITHUB_ACTIONS === 'true' && repositoryName
-  ? `/${repositoryName}/`
-  : '/';
+const base = process.env.SITE_BASE_URL
+  ? process.env.SITE_BASE_URL
+  : process.env.GITHUB_ACTIONS === 'true' && repositoryName
+    ? `/${repositoryName}/`
+    : '/';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -183,6 +185,33 @@ const copyStaticAssetsPlugin = () => ({
   },
 });
 
+const preserveStaticCssPlugin = () => ({
+  name: 'preserve-static-css-links',
+  transformIndexHtml: {
+    enforce: 'post',
+    transform(html, ctx) {
+      const relPath = path.relative(__dirname, ctx.filename || '');
+      const depth = relPath && relPath !== 'index.html'
+        ? path.dirname(relPath).split(path.sep).filter(Boolean).length
+        : 0;
+      const assetPrefix = base && base !== '/' ? '' : '../'.repeat(depth);
+
+      const cleaned = html.replace(
+        /\s*<link rel="stylesheet" crossorigin href="[^"]*syntax-[^"]+\.css">\s*/g,
+        ''
+      );
+
+      const cssLinks = `  <link rel="stylesheet" href="${assetPrefix}assets/css/main.css">\n  <link rel="stylesheet" href="${assetPrefix}assets/css/syntax.css">\n`;
+
+      if (!cleaned.includes(`href="${assetPrefix}assets/css/main.css"`)) {
+        return cleaned.replace('</head>', `${cssLinks}</head>`);
+      }
+
+      return cleaned;
+    },
+  },
+});
+
 const py_build_plugin = () => {
   let ready = false;
 
@@ -291,6 +320,7 @@ export default defineConfig(async ({ command }) => {
     plugins: [
       py_build_plugin(),
       copyStaticAssetsPlugin(),
+      preserveStaticCssPlugin(),
       tailwindcss(),
     ],
     build: {

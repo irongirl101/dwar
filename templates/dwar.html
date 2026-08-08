@@ -1,14 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="min-h-screen w-full bg-[#f7f7f7] flex items-center justify-center px-6">
-    <div class="max-w-xl w-full rounded-[2rem] bg-white p-10 text-center shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
-      <p class="mb-3 text-sm uppercase tracking-[0.3em] text-[#701723]">New destination</p>
-      <h1 class="text-4xl font-bold text-[#111]">{{ page.title }}</h1>
-      <p class="mt-4 text-lg text-gray-700">
-        This is a distinct page for the door transition, separate from the landing experience.
-      </p>
-      <a href="{{ site.base_url }}" class="btn btn-outline mt-8">Back to landing</a>
+  <div class="min-h-screen w-full bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.95),_transparent_35%),linear-gradient(180deg,#fdf8f3_0%,#eef3fb_100%)] text-slate-950">
+    <div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-16 lg:px-8">
+      <div class="grid items-center gap-10 lg:grid-cols-[1.2fr_0.9fr]">
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-3 rounded-full border border-[#701723]/20 bg-white/80 px-4 py-2 text-sm font-semibold uppercase tracking-[0.35em] text-[#701723] shadow-sm shadow-slate-200/60">
+            Architect-led design
+          </div>
+
+          <div class="space-y-6">
+            <p class="text-sm uppercase tracking-[0.35em] text-[#701723]">Dwar Architecture</p>
+            <h1 class="text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">Crafting elegant spaces that feel purposeful and welcoming.</h1>
+            <p class="max-w-2xl text-lg leading-8 text-slate-700">
+              A boutique architecture studio shaping homes, studios, and workspaces with clarity, calm, and confident design.
+            </p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <a href="{{ site.base_url or '/' }}" class="btn btn-primary btn-lg">Return to entrance</a>
+            <a href="{{ site.base_url }}blog/" class="btn btn-outline btn-lg">Browse ideas</a>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-lg shadow-slate-300/20">
+              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">What I do</p>
+              <ul class="mt-4 space-y-3 text-slate-700">
+                <li>Residential and commercial concept design</li>
+                <li>Interior planning that balances beauty with function</li>
+                <li>Material selection, detailing, and coordination</li>
+                <li>Sustainable strategies shaped by context</li>
+              </ul>
+            </div>
+            <div class="rounded-[2rem] border border-slate-200 bg-slate-950/5 p-6 shadow-lg shadow-slate-300/20">
+              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Design philosophy</p>
+              <p class="mt-4 text-slate-700">
+                Spaces should feel considered, sincere, and quietly memorable. Every project begins with listening, then builds around how people want to move through their day.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="relative overflow-hidden rounded-[2.5rem] border border-white/80 bg-gradient-to-br from-[#fefcf8] via-[#f7f0ff] to-[#eef3fb] p-6 shadow-2xl shadow-slate-300/20">
+            <div class="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle,_rgba(255,255,255,0.95),_transparent_60%)]"></div>
+            <div class="relative z-10 flex h-full flex-col justify-between gap-6">
+              <div class="space-y-4">
+                <div class="h-12 w-32 rounded-full bg-slate-950/10"></div>
+                <div class="space-y-3">
+                  <div class="h-8 w-3/4 rounded-full bg-slate-950/10"></div>
+                  <div class="h-6 w-1/2 rounded-full bg-slate-950/10"></div>
+                  <div class="h-5 w-2/3 rounded-full bg-slate-950/10"></div>
+                </div>
+              </div>
+              <div class="rounded-[1.75rem] bg-white/90 p-6 shadow-lg shadow-slate-300/20">
+                <p class="text-xs uppercase tracking-[0.35em] text-slate-500">Featured project</p>
+                <h2 class="mt-3 text-2xl font-semibold text-slate-950">A refined studio retreat</h2>
+                <p class="mt-3 text-sm leading-6 text-slate-600">
+                  Light-filled interiors, quiet material palettes, and spatial planning that supports work, rest, and connection.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 rounded-[2rem] border border-slate-200 bg-white/90 p-10 shadow-[0_50px_100px_-80px_rgba(15,23,33,0.18)]">
+        <div class="space-y-8">
+          <div class="prose prose-slate max-w-none">
+            {{ content | safe }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
