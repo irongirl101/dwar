@@ -13,7 +13,7 @@ package-lock.json
 .venv
 dist
 .venv/*
-.github
+
 .DS_Store
 .gh-pages-tmp/
 .gh-home/
