@@ -1,87 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="transition-stage min-h-screen w-full bg-[#0b0406] text-white flex flex-col items-center justify-between relative overflow-hidden transition-colors duration-[3600ms] ease-[cubic-bezier(0.16,1,0.3,1)] select-none">
-    
-    <!-- Background Ambient Glow & Architectural Grid -->
-    <div class="absolute inset-0 pointer-events-none z-0">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,rgba(169,26,44,0.32)_0%,rgba(112,23,35,0.12)_45%,transparent_75%)] blur-3xl"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:32px_32px] opacity-40"></div>
-    </div>
+  <div class="transition-stage min-h-screen w-full bg-[#cecece] flex items-center justify-center relative overflow-hidden transition-colors duration-[3600ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <div class="zoom-overlay absolute inset-0 z-20 pointer-events-none opacity-0 transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
 
-    <!-- Zoom Overlay for Page Transition -->
-    <div class="zoom-overlay absolute inset-0 z-30 pointer-events-none opacity-0 transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+    <img class="absolute top-8 left-8 w-28 h-auto z-10" src="assets/door-animation/CIRCULAR_LOGO.png" alt="Logo" />
 
-    <!-- Sleek Top Navigation Header -->
-    <header class="w-full z-20 flex items-center justify-between px-6 md:px-12 py-6 backdrop-blur-md bg-black/30 border-b border-white/10">
-      <div class="flex items-center gap-4">
-        {% set logo_path = asset_prefix ~ 'assets/door-animation/CIRCULAR_LOGO.png' %}
-        <img class="w-11 h-11 rounded-full object-cover ring-2 ring-[#a91a2c]/60 shadow-lg shadow-[#a91a2c]/30" src="{{ logo_path }}" alt="Dwar Logo" />
-        <div>
-          <span class="text-sm font-bold tracking-[0.45em] uppercase text-white block">DWAR</span>
-          <span class="text-[10px] tracking-[0.28em] uppercase text-white/60 block">Architecture & Design</span>
-        </div>
-      </div>
-      
-      <a href="dwar/" class="group text-xs font-semibold tracking-[0.25em] uppercase text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-white/30 bg-white/5">
-        <span>Enter Studio</span>
-        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </a>
-    </header>
-
-    <!-- Hero / Door Entrance Showcase -->
-    <div class="relative z-10 flex flex-col items-center justify-center my-auto py-8">
-      
-      <div class="text-center mb-8 max-w-lg px-4">
-        <p class="text-xs font-bold uppercase tracking-[0.4em] text-[#a91a2c] mb-2">Boutique Architecture</p>
-        <h1 class="text-3xl md:text-4xl font-extralight tracking-wide text-white/95">Step into <span class="font-normal text-white">Dwar</span></h1>
-      </div>
-
-      <!-- Door Frame Outer Surround -->
-      <div class="relative group flex flex-col items-center gap-8">
-        <div class="door-frame-wrapper relative p-[7px] rounded-[136px_136px_0_0] bg-gradient-to-b from-[#701723] via-[#3a0b12] to-[#120306] shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(169,26,44,0.35)] transition-all duration-500 group-hover:shadow-[0_35px_80px_rgba(0,0,0,0.95),0_0_65px_rgba(169,26,44,0.55)]">
-          
-          <!-- Door Link Anchor -->
-          <a class="door-link relative block w-[220px] h-[330px] md:w-[240px] md:h-[360px] rounded-[128px_128px_0_0] bg-[#070103] overflow-hidden no-underline cursor-pointer group/door" href="dwar/" aria-label="Open dwar">
-            
-            <!-- Interior Radiant Portal Glow -->
-            <div class="portal-interior absolute inset-0 rounded-[128px_128px_0_0] bg-[radial-gradient(circle_at_center,#fff6eb_0%,#ffe0c2_35%,#a91a2c_75%,#3a0b12_100%)] flex items-center justify-center opacity-95">
-              <span class="text-xs font-bold uppercase tracking-[0.35em] text-[#3a0b12] drop-shadow">Welcome</span>
-            </div>
-
-            <!-- Interactive 3D Door Panel -->
-            <div class="door absolute inset-0 rounded-[128px_128px_0_0] bg-gradient-to-r from-[#80121f] via-[#a91a2c] to-[#600f18] shadow-[inset_-18px_8px_24px_rgba(0,0,0,0.65),inset_4px_4px_12px_rgba(255,255,255,0.2)] box-border origin-left transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
-              
-              <!-- Architectural Molding / Panel Details -->
-              <div class="absolute top-12 left-6 right-6 bottom-16 rounded-[92px_92px_8px_8px] border border-white/15 bg-black/15 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] flex flex-col justify-between p-4 pointer-events-none">
-                <div class="h-24 rounded-[72px_72px_6px_6px] border border-white/10 bg-black/25"></div>
-                <div class="h-28 rounded-md border border-white/10 bg-black/25"></div>
-              </div>
-
-              <!-- Brass Door Handle -->
-              <div class="absolute right-5 top-[58%] -translate-y-1/2 flex items-center gap-1.5 group-hover/door:scale-110 transition-transform duration-300 pointer-events-none">
-                <div class="w-3.5 h-11 rounded-full bg-gradient-to-r from-[#e6c887] via-[#f7e4b5] to-[#b39149] shadow-[2px_5px_12px_rgba(0,0,0,0.8)] border border-[#fff2d1]/50"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-[#f7e4b5] shadow-md"></div>
-              </div>
-
-            </div>
-          </a>
-        </div>
-
-        <!-- Interactive Hint Prompt -->
-        <div class="door-prompt flex flex-col items-center gap-2">
-          <span class="text-xs uppercase tracking-[0.4em] font-semibold text-white/70 group-hover:text-white transition-colors duration-300">Click the Door to Enter</span>
-          <div class="w-1.5 h-5 rounded-full bg-gradient-to-b from-[#a91a2c] to-transparent animate-bounce"></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Minimal Footer -->
-    <footer class="w-full z-20 py-6 text-center text-xs tracking-[0.25em] uppercase text-white/40 border-t border-white/5 backdrop-blur-sm bg-black/20">
-      &copy; {{ page.date.year if page.date is defined else '2026' }} Dwar Architecture. All rights reserved.
-    </footer>
-
+    <a class="door-link relative block w-[200px] h-[300px] rounded-[100px_100px_0_0] bg-[#0f0003] shadow-[0_10px_25px_rgba(0,0,0,0.3)] no-underline transition-transform duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)]" href="dwar/" aria-label="Open dwar">
+      <div class="door absolute inset-0 rounded-[100px_100px_0_0] bg-[#a91a2c] shadow-[inset_-20px_7px_#701723] box-border origin-left transition-all duration-[2200ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer"></div>
+    </a>
   </div>
 
   <script>
@@ -116,11 +43,11 @@
 
         setTimeout(() => {
           document.body.classList.add('is-fading-out');
-        }, 2600);
+        }, 2800);
 
         setTimeout(() => {
           window.location.href = 'dwar/';
-        }, 3400);
+        }, 3600);
       });
     });
   </script>
@@ -128,44 +55,44 @@
   <style>
     body.is-fading-out {
       opacity: 0;
-      transition: opacity 600ms ease-out;
+      transition: opacity 500ms ease-out;
     }
 
     .doorOpen {
-      transform: perspective(1200px) rotateY(-118deg) scale(1.02);
+      transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-112deg) scale(1.02);
     }
 
     .doorExpand {
-      transform: scale(3.5) translateY(-30px);
-      box-shadow: 0 0 0 9999px #0b0406;
+      transform: scale(3.35) translateY(-34px);
+      box-shadow: 0 0 0 9999px #0f0003;
     }
 
     .doorPanelExpand {
-      transform: rotateY(-118deg) scale(3.5) translateY(-30px);
+      transform: rotateY(-112deg) scale(3.35) translateY(-34px);
     }
 
     .transition-stage.is-revealing {
-      background-color: #0b0406;
-      transition: background-color 3400ms cubic-bezier(0.16, 1, 0.3, 1);
+      background-color: #0f0003;
+      transition: background-color 3600ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .transition-stage {
-      background-color: #0b0406;
+      background-color: #cecece;
     }
 
     .zoom-overlay {
-      transform-origin: center center;
+      transform-origin: top left;
       border-radius: 9999px;
       clip-path: circle(0% at center);
       opacity: 0;
-      background: radial-gradient(circle at center, rgba(255, 246, 235, 0.95) 0%, rgba(255, 224, 194, 0.85) 40%, rgba(169, 26, 44, 0.75) 100%);
-      transition: transform 3400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 3400ms ease-out;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(244,240,235,0.78) 45%, rgba(232,226,218,0.7) 100%);
+      transition: transform 3600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 3600ms ease-out;
     }
 
     .zoom-overlay.is-revealing {
-      opacity: 0.98;
-      clip-path: circle(200% at center);
-      background: radial-gradient(circle at center, rgba(11, 4, 6, 0.96) 0%, rgba(11, 4, 6, 0.88) 50%, rgba(11, 4, 6, 0.78) 100%);
+      opacity: 0.96;
+      clip-path: circle(180% at center);
+      background: radial-gradient(circle at center, rgba(21, 1, 4, 0.94) 0%, rgba(21, 1, 4, 0.84) 45%, rgba(21, 1, 4, 0.72) 100%);
     }
   </style>
 {% endblock %}
